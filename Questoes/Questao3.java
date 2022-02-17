@@ -30,49 +30,16 @@ public class Questao3 {
 				subStrings[ponteiro++] = palavra.substring(i, i+passo);
 			}
 		}
-		for(int j = 0; j<subStrings.length; j++) {
-			
-			System.out.print(" "+subStrings[j]);
-		
-	}
-		System.out.println("\n");
+
 		//somar peso da palavra
 		int [] subStringsPeso= transformarPesoDaString(subStrings);
-		
-		for(int j = 0; j<subStringsPeso.length; j++) {
-			
-				System.out.print(" "+subStringsPeso[j]);
-			
-		}
-		System.out.println("\n");
+
 		
 		//verificar se alguma palavra possui o mesmo peso
-		int contador;
-		int repeticoes=0;
-		String repetidos = "";
-		for(i = 0; i< subStringsPeso.length; i++) {
-			contador = 0;
-			for(int j = i+1; j<subStringsPeso.length; j++) {
-				if(subStringsPeso[i]==subStringsPeso[j]) {
-					
-					if(contador==0 ) {
-						repetidos+= Integer.toString(subStringsPeso[i])+",";
-					}
-					subStringsPeso[j]=0;
-					contador++;
-					
-				}
-			}
-		}
-		System.out.println(repetidos);
 		
-		String [] arrayAux = repetidos.split(",");
-		for(i = 0; i < arrayAux.length;i++) {
-			if(Integer.parseInt(arrayAux[i])!=0) {
-				repeticoes++;
-				System.out.print(arrayAux[i]+ " ");
-			}
-		}
+		System.out.println(contarRepetidos(subStringsPeso));
+		
+		
 		
 		
 	}
@@ -101,5 +68,40 @@ public class Questao3 {
 			}
 		}
 		return subStringsPeso;
+	}
+	
+	public static int contarRepetidos(int[] subStringsPeso) {
+		//verifica se alguma substring possui o valor repetido
+		int encontrou;
+		String repetidos = "";
+		
+		for(int i = 0; i< subStringsPeso.length; i++) {
+			encontrou = 0;
+			for(int j = i+1; j<subStringsPeso.length; j++) {
+				if(subStringsPeso[i]==subStringsPeso[j]) {
+					
+					if(encontrou==0 ) {
+						repetidos+= Integer.toString(subStringsPeso[i])+",";
+					}
+					subStringsPeso[j]=0;
+					encontrou++;
+				}
+			}
+		}
+		return contar(repetidos);
+	
+		
+	}
+	public static int contar(String repetidos) {
+		//caso tenha 2 ou mais repeticoes do mesmo peso ela foi zerada e aqui nao entra na conta
+		String [] arrayAux = repetidos.split(",");
+		int total=0;
+		
+		for(int i = 0; i < arrayAux.length;i++) {
+			if(Integer.parseInt(arrayAux[i])!=0) {
+				total++;
+			}
+		}
+		return total;
 	}
 }
