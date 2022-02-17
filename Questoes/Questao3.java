@@ -33,15 +33,9 @@ public class Questao3 {
 
 		//somar peso da palavra
 		int [] subStringsPeso= transformarPesoDaString(subStrings);
-
 		
-		//verificar se alguma palavra possui o mesmo peso
-		
+		//contar total de anagramas
 		System.out.println(contarRepetidos(subStringsPeso));
-		
-		
-		
-		
 	}
 	
 	
@@ -88,11 +82,11 @@ public class Questao3 {
 				}
 			}
 		}
-		return contar(repetidos);
+		return contarTotalSemRepeticoes(repetidos);
 	
 		
 	}
-	public static int contar(String repetidos) {
+	public static int contarTotalSemRepeticoes(String repetidos) {
 		//caso tenha 2 ou mais repeticoes do mesmo peso ela foi zerada e aqui nao entra na conta
 		String [] arrayAux = repetidos.split(",");
 		int total=0;
